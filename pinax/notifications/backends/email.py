@@ -17,7 +17,10 @@ class EmailBackend(BaseBackend):
 
     def deliver(self, recipient, sender, notice_type, extra_context):
         # TODO: require this to be passed in extra_context
-
+        from_email = settings.DEFAULT_FROM_EMAIL
+        if 'from_email' in extra_context:
+            from_email = extra_contex.pop('from_email')
+            
         context = self.default_context()
         context.update({
             "recipient": recipient,
@@ -39,4 +42,4 @@ class EmailBackend(BaseBackend):
             "message": messages["full.txt"],
         }, context)
 
-        send_mail(subject, body, settings.DEFAULT_FROM_EMAIL, [recipient.email])
+        send_mail(subject, body, from_email, [recipient.email])
