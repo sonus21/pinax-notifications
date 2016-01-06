@@ -26,6 +26,7 @@ class EmailBackend(BaseBackend):
             "recipient": recipient,
             "sender": sender,
             "notice": ugettext(notice_type.display),
+            "description": ugettext(notice_type.description),
         })
         context.update(extra_context)
 
