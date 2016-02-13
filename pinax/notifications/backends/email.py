@@ -19,7 +19,7 @@ class EmailBackend(BaseBackend):
         # TODO: require this to be passed in extra_context
         from_email = settings.DEFAULT_FROM_EMAIL
         if 'from_email' in extra_context:
-            from_email = extra_contex.pop('from_email')
+            from_email = extra_context.pop('from_email')
             
         context = self.default_context()
         context.update({
